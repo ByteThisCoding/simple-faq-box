@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>FAQ Box - Byte This!</title>
+
+    <style>
+        body {
+            font-family: Consolas;
+            font-size: 1.4em;
+            margin: 0;
+            padding: 0;
+            background-color: #dfffff;
+        }
+
+        header {
+            border-bottom: 1px solid black;
+            padding: 10px;
+            background-color: #62caff;
+        }
+
+        content {
+            display: block;
+            padding: 20px;
+        }
+
+        /* FAQ Box Styles */
+        faq-box {
+            display: block;
+
+            /* We can also add other styles here, such as border */
+        }
+
+        faq-box-qa {
+            display: block;
+        }
+
+        faq-box-question {
+            display: block;
+            background-color: #ffffc6;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            text-align: left;
+            border: 1px dashed black;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        faq-box-question:hover {
+            background-color: #ffff78;
+        }
+
+        faq-box-answer {
+            padding: 18px;
+            border: 1px dashed black;
+
+            /* Will be updated to show/hide answer */
+            display: none;
+        }
+
+    </style>
+    <script>
+        /**
+         * This component will represent a single
+         * question and answer pair / container
+         * 
+         * We'll put the logic for toggling
+         * answer visibility here
+         */ 
+        class FaqBoxQA extends HTMLElement {
+
+            /**
+             * Make super call + initialize variables here
+             */ 
+            constructor() {
+                super();
+                this._answerIsOpen = false;
+            }
+
+            /**
+             * We'll use getters and setters so we
+             * can control what happens when the
+             * property gets updated
+             */ 
+            get answerIsOpen() {
+                return this._answerIsOpen;
+            }
+
+            set answerIsOpen(isOpen) {
+                this._answerIsOpen = isOpen;
+
+                //update css for answer element
+                const answerElement = this.lastElementChild;
+                answerElement.style.display = isOpen
+                    ? "block"
+                    : "none";
+
+                console.log("set answer is open:", isOpen);
+            }
+
+            /**
+             * This is called by the JavaScript engine when the
+             * component is placed onto the DOM
+             * 
+             * We'll add listeners for click events for questions
+             */ 
+            connectedCallback() {
+                //wrap in a set timeout as children are not immediately available
+                setTimeout(() => {
+                    const questionElement = this.firstElementChild;
+
+                    //add event listener to toggle answer visibility
+                    questionElement.addEventListener("click", () => {
+                        this.answerIsOpen = !this.answerIsOpen;
+                    });
+                }, 50);
+            }
+        }
+
+        //before we can use this element, we need to register it as an HTML custom element
+        //other selectors can be implicitly defined via HTML and css
+        customElements.define(
+            //selector to use for this element
+            "faq-box-qa",
+            //element class reference
+            FaqBoxQA
+        );
+
+    </script>
+</head>
+<body>
+
+    <header>
+        Web-Dev with Music - Byte This!
+    </header>
+
+    <content>
+        <h1>FAQ Box</h1>
+        <p>Let's display some questions and answers using an FAQ box.
+            <br><br>Questions will be visible by default; users can view answers by clicking on questions
+        </p>
+
+        <!-- We'll create this as a container for the questions -->
+        <faq-box>
+
+            <!-- This element will contain a question answer pair -->
+            <faq-box-qa>
+                <faq-box-question>
+                    How will this FAQ box work?
+                </faq-box-question>
+                <faq-box-answer>
+                    We'll create custom Web Components which will let us use custom html elements to declare questions and answers.
+                </faq-box-answer>
+            </faq-box-qa>
+
+            <faq-box-qa>
+                <faq-box-question>
+                    Can we have more than one FAQ box on the same page?
+                </faq-box-question>
+                <faq-box-answer>
+                    Yes, the FAQ box contains its own state and elements, so there will be no issues with multiple boxes at once.                </faq-box-answer>
+            </faq-box-qa>
+
+            <faq-box-qa>
+                <faq-box-question>
+                    What's Web Dev with Music?
+                </faq-box-question>
+                <faq-box-answer>
+                    It's our YouTube playlist where we write some JavaScript, HTML, and CSS while listening to some music.                </faq-box-answer>
+            </faq-box-qa>
+
+            <faq-box-qa>
+                <faq-box-question>
+                    Do you guys have merch?
+                </faq-box-question>
+                <faq-box-answer>
+                    Yes, check it out at www.bytethisstore.com !!
+                </faq-box-answer>
+            </faq-box-qa>
+
+        </faq-box>
+
+    </content>
+</body>
+</html>
