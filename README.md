@@ -1,5 +1,7 @@
 # simple-faq-box
-An HTML and JavaScript implementation of an faq drop down box.
+An HTML and JavaScript implementation of an faq drop down box. Feel free to also take a look at:
+* Our [YouTube Video](https://www.youtube.com/watch?v=pPEc6G0x0u4), where we code this in real time with some music.
+* Our [Dev Page](https://bytethisstore.com/articles/pg/simple-faq-box), where we cover this in more detail.
 
 ## FAQ Box Requirements
 For this example, we'll create a simple & straightforward faq box, which will:
