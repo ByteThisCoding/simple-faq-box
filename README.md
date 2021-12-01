@@ -16,7 +16,7 @@ There are a few different approaches we could take to write our component, inclu
 * Create an HTML structure with the questions and answers, then use JavaScript to reference the elements and add JavaScript logic.
 * Use **Web Components** to declare FAQ Box elements in the HTML document as if they were native elements.
 
-For this example, we will use the web components option. In the sections below, we'll introduce some of the basic concepts of web components. For a detailed introduction, check out [Mozilla's Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) documentation.
+For this example, we will use the web components option. In the sections below, we'll introduce some of the basic concepts of web components. For a detailed introduction, check out our [Introduction to Web Components](https://bytethisstore.com/articles/pg/intro-web-components) dev page.
 
 ## Creating the HTML Structure
 We want to be able to structure our HTML so it is evident which components correspond to questions, answers, and containers; you should be able to understand exactly what is happening at a glance. For this example, our structure will look something like:
